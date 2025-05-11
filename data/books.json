@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Panduan Menulis Buku Akademik",
+    "publisher": "Penerbit UNESA",
+    "isbn": "978-623-1234-56-7",
+    "year": 2023,
+    "cover": "cover1.jpg",
+    "sales_link": "https://example.com/buku1"
+  },
+  {
+    "id": 2,
+    "title": "Metodologi Penelitian Pendidikan",
+    "publisher": "Penerbit Erlangga",
+    "isbn": "978-623-5678-90-1",
+    "year": 2022,
+    "cover": "cover2.jpg",
+    "sales_link": "https://example.com/buku2"
+  }
+]
