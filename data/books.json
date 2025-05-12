@@ -1,20 +1,114 @@
 [
   {
     "id": 1,
-    "title": "Panduan Menulis Buku Akademik",
-    "publisher": "Penerbit UNESA",
-    "isbn": "978-623-1234-56-7",
-    "year": 2023,
-    "cover": "assets/inmages/cover_01.png",
-    "sales_link": "https://example.com/buku1"
+    "publisher_id": 11,
+    "title": "Pengantar Machine Learning",
+    "isbn": "978-623-8758-78-4",
+    "sales_link": "https://penerbitmafy.com/product/pengantar-machine-learning/",
+    "cover": "iqra/assets/images/cover_01.png"
   },
   {
     "id": 2,
-    "title": "Metodologi Penelitian Pendidikan",
-    "publisher": "Penerbit Erlangga",
-    "isbn": "978-623-5678-90-1",
-    "year": 2022,
-    "cover": "cover2.jpg",
-    "sales_link": "https://example.com/buku2"
+    "publisher_id": 12,
+    "title": "Pemrograman Web dan Aplikasi Mobile",
+    "isbn": "978-623-8744-59-6",
+    "sales_link": "https://www.ycmm.org/book-store/book-catalog-2024/pemrograman-web-dan-aplikasi-mobile",
+    "cover": "iqra/assets/images/cover_02.png"
+  },
+  {
+    "id": 3,
+    "publisher_id": 13,
+    "title": "Dasar Komputer dan Pemograman",
+    "isbn": "978-623-10-5732-7",
+    "sales_link": "https://askarasastramedia.com/product/dasar-komputer-dan-pemograman/",
+    "cover": "/assets/images/cover_03.png"
+  },
+  {
+    "id": 4,
+    "publisher_id": 12,
+    "title": "Pendidikan inovatif",
+    "isbn": "978-623-8744-96-1",
+    "sales_link": "https://www.ycmm.org/book-store/book-catalog-2025/pendidikan-inovatif",
+    "cover": "/assets/images/cover_04.png"
+  },
+  {
+    "id": 5,
+    "publisher_id": 14,
+    "title": "Buku Ajar Statistik Ekonomi dan Bisnis",
+    "isbn": "978-634-7100-15-3",
+    "sales_link": "https://penerbitbukumurah.web.id/product/buku-ajar-statistik-ekonomi-dan-bisnis/",
+    "cover": "/assets/images/cover_05.png"
+  },
+  {
+    "id": 6,
+    "publisher_id": 5,
+    "title": "Inovasi Manajemen Pendidikan",
+    "isbn": "978-634-7180-15-5",
+    "sales_link": "https://www.reymediagrafika.org/penerbit/katalog-buku-2025/inovasi-manajemen-pendidikan",
+    "cover": "/assets/images/cover_06.png"
+  },
+  {
+    "id": 7,
+    "publisher_id": 10,
+    "title": "Keamanan Jaringan dan Sistem Informasi",
+    "isbn": "978-623-10-8557-3",
+    "sales_link": "https://bukunusantara.com/keamanan-jaringan-dan-sistem-informasi/",
+    "cover": "/assets/images/cover_07.png"
+  },
+  {
+    "id": 8,
+    "publisher_id": 5,
+    "title": "Transformasi Digital dalam Dunia Manajemen",
+    "isbn": "978-634-7180-29-2",
+    "sales_link": "https://www.reymediagrafika.org/penerbit/katalog-buku-2025/transformasi-digital-dalam-dunia-manajemen",
+    "cover": "/assets/images/cover_08.png"
+  },
+  {
+    "id": 9,
+    "publisher_id": 10,
+    "title": "Manajemen Pendidikan: Teori dan Praktik",
+    "isbn": "978-623-10-8941-0",
+    "sales_link": "https://bukunusantara.com/manajemen-pendidikan-teori-dan-praktik-2/",
+    "cover": "/assets/images/cover_09.png"
+  },
+  {
+    "id": 10,
+    "publisher_id": 15,
+    "title": "Pengantar Data-Based Programming",
+    "isbn": "978-634-7209-43-6",
+    "sales_link": "https://ypad.store/product/pengantar-data-based-programming/",
+    "cover": "/assets/images/cover_10.png"
+  },
+  {
+    "id": 11,
+    "publisher_id": 5,
+    "title": "Strategi Mengajar di Era Digital",
+    "isbn": "978-634-7180-34-6",
+    "sales_link": "https://www.reymediagrafika.org/penerbit/katalog-buku-2025/strategi-mengajar-di-era-digital",
+    "cover": "/assets/images/cover_11.png"
+  },
+  {
+    "id": 12,
+    "publisher_id": 16,
+    "title": "Buku Ajar Pendidikan",
+    "isbn": "978-634-7178-33-6",
+    "sales_link": "https://triedukasiilmiah.or.id/book-published/buku-ajar-pendidikan/",
+    "cover": "/assets/images/cover_12.png"
+  },
+  {
+    "id": 13,
+    "publisher_id": 1,
+    "title": "Ilmu Sosial Budaya Dasar",
+    "isbn": "978-634-220-460-3",
+    "sales_link": "https://penerbitmafy.com/product/ilmu-sosial-budaya-dasar/",
+    "cover": "/assets/images/cover_13.png"
+  },
+  {
+    "id": 15,
+    "publisher_id": 16,
+    "title": "Manajemen Pendidikan",
+    "isbn": "978-634-7178-39-8",
+    "sales_link": null,
+    "cover": "/assets/images/cover_15.png"
   }
 ]
