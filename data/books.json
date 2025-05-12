@@ -5,7 +5,7 @@
     "title": "Pengantar Machine Learning",
     "isbn": "978-623-8758-78-4",
     "sales_link": "https://penerbitmafy.com/product/pengantar-machine-learning/",
-    "cover": "iqra/assets/images/cover_01.png"
+    "cover": "/assets/images/cover_01.png"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "title": "Pemrograman Web dan Aplikasi Mobile",
     "isbn": "978-623-8744-59-6",
     "sales_link": "https://www.ycmm.org/book-store/book-catalog-2024/pemrograman-web-dan-aplikasi-mobile",
-    "cover": "iqra/assets/images/cover_02.png"
+    "cover": "/assets/images/cover_02.png"
   },
   {
     "id": 3,
