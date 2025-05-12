@@ -1,82 +1,122 @@
-// Tambahkan variabel global untuk menandai sudah di-load
+// script.js
 let booksLoaded = false;
+let animationDelay = 0;
 
 document.addEventListener('DOMContentLoaded', function() {
   if (booksLoaded) return;
-  booksLoaded = true;
   
+  // Show loading state
+  const container = document.getElementById('books-container');
+  container.innerHTML = `
+    <div class="col-12 text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Memuat data buku...</p>
+    </div>
+  `;
+
   fetch('data/books.json', {
+    cache: 'force-cache',
     headers: {
-      'Cache-Control': 'max-age=3600' // Cache 1 jam
+      'Cache-Control': 'max-age=3600'
     }
   })
   .then(response => {
-    if (!response.ok) throw new Error('Network error');
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return response.json();
   })
   .then(books => {
-    const container = document.getElementById('books-container');
+    booksLoaded = true;
     container.innerHTML = '';
-    
     const fragment = document.createDocumentFragment();
     
-    books.forEach(book => {
-      // Format penulis dan bab
-      const authorsHtml = book.authors?.map(author => 
-        `${author.name} (Bab ${author.chapters.join(', ')})`
-      ).join('<br>') || 'Penulis tidak tersedia';
-      
-      // Format link tambahan
-      const additionalLinks = [
-        book.google_books_link ? `<a href="${book.google_books_link}" target="_blank" class="badge bg-info me-1 mb-1">Google Books</a>` : '',
-        book.academia_link ? `<a href="${book.academia_link}" target="_blank" class="badge bg-primary me-1 mb-1">Academia.edu</a>` : '',
-        book.researchgate_link ? `<a href="${book.researchgate_link}" target="_blank" class="badge bg-success mb-1">ResearchGate</a>` : ''
-      ].filter(link => link).join(' ');
-
-      const card = document.createElement('div');
-      card.className = 'col-md-4 mb-4';
-      card.innerHTML = `
-        <div class="card h-100">
-          <img src="${book.cover}?v=1.0" class="card-img-top book-cover" 
-               alt="${book.title}" 
-               loading="lazy"
-               decoding="async"
-               onerror="this.src='assets/images/default-cover.jpg'">
-          <div class="card-body">
-            <h5 class="card-title">${book.title}</h5>
-            <p class="card-text">
-              <strong>Penulis:</strong><br>${authorsHtml}<br><br>
-              <strong>Penerbit:</strong> ${book.publisher || 'Tidak tersedia'}<br>
-              <strong>Kota:</strong> ${book.city || 'Tidak tersedia'}<br>
-              <strong>Tahun:</strong> ${book.year || 'Tidak tersedia'}<br>
-              <strong>ISBN:</strong> ${book.isbn || 'Tidak tersedia'}
-            </p>
-          </div>
-          <div class="card-footer bg-white">
-            ${additionalLinks}
-            ${book.sales_link ? 
-              `<a href="${book.sales_link}" class="btn btn-primary btn-sm mt-2 d-block" target="_blank">Beli Buku</a>` : 
-              '<button class="btn btn-secondary btn-sm mt-2 d-block" disabled>Tidak Tersedia</button>'}
-          </div>
-        </div>
-      `;
+    books.forEach((book, index) => {
+      const card = createBookCard(book, index);
       fragment.appendChild(card);
     });
     
     container.appendChild(fragment);
-    
-    // Aktifkan tooltip untuk semua badge
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
+    initTooltips();
   })
   .catch(error => {
-    console.error('Error:', error);
-    document.getElementById('books-container').innerHTML = `
+    console.error('Fetch error:', error);
+    container.innerHTML = `
       <div class="alert alert-danger col-12">
-        Gagal memuat data: ${error.message}
+        <i class="bi bi-exclamation-triangle-fill"></i> Gagal memuat data: ${error.message}<br>
+        <button onclick="window.location.reload()" class="btn btn-sm btn-outline-danger mt-2">
+          Coba Lagi
+        </button>
       </div>
     `;
   });
 });
+
+function createBookCard(book, index) {
+  const card = document.createElement('div');
+  card.className = 'col-md-4 mb-4 book-card';
+  card.style.animationDelay = `${index * 0.1}s`;
+  
+  // Format authors
+  const authorsHtml = book.authors?.map(author => 
+    `${author.name}${author.chapters?.length ? ` (Bab ${author.chapters.join(', ')})` : ''}`
+  ).join('<br>') || 'Penulis tidak tersedia';
+  
+  // Format additional links
+  const additionalLinks = [
+    book.google_books_link ? createBadgeLink('Google Books', book.google_books_link, 'info') : '',
+    book.academia_link ? createBadgeLink('Academia', book.academia_link, 'primary') : '',
+    book.researchgate_link ? createBadgeLink('ResearchGate', book.researchgate_link, 'success') : ''
+  ].filter(Boolean).join('');
+
+  card.innerHTML = `
+    <div class="card h-100">
+      <div class="book-cover-container">
+        <img src="${book.cover}?v=${new Date().getTime()}" 
+             class="book-cover"
+             alt="Cover ${book.title}"
+             loading="lazy"
+             decoding="async"
+             onerror="this.onerror=null;this.src='assets/images/default-cover.jpg?v=${new Date().getTime()}'">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title" title="${book.title}">${book.title}</h5>
+        <div class="card-text">
+          <div class="mb-2"><strong>Penulis:</strong><br>${authorsHtml}</div>
+          <div><strong>Penerbit:</strong> ${book.publisher || '-'}</div>
+          <div><strong>Tahun:</strong> ${book.year || '-'}</div>
+          <div><strong>ISBN:</strong> ${book.isbn || '-'}</div>
+        </div>
+      </div>
+      <div class="card-footer bg-white">
+        <div class="link-badges">${additionalLinks}</div>
+        ${book.sales_link ? 
+          `<a href="${book.sales_link}" class="btn btn-primary btn-sm mt-2" target="_blank">
+            <i class="bi bi-cart3"></i> Beli Buku
+          </a>` : 
+          `<button class="btn btn-outline-secondary btn-sm mt-2" disabled>
+            <i class="bi bi-slash-circle"></i> Tidak Tersedia
+          </button>`}
+      </div>
+    </div>
+  `;
+  
+  return card;
+}
+
+function createBadgeLink(text, href, type) {
+  return `
+    <a href="${href}" target="_blank" 
+       class="badge bg-${type} me-1 mb-1 text-decoration-none"
+       data-bs-toggle="tooltip" data-bs-placement="top" title="Buka di ${text}">
+      ${text}
+    </a>
+  `;
+}
+
+function initTooltips() {
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.forEach(tooltipTriggerEl => {
+    new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+}
