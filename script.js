@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
               <img src="images/${book.cover}" class="card-img-top book-cover" alt="${book.title}">
               <div class="card-body">
                 <h5 class="card-title">${book.title}</h5>
-                <p class="card-text">
-                  <strong>Penerbit:</strong> ${book.publisher}<br>
-                  <strong>Tahun:</strong> ${book.year}<br>
-                  <strong>ISBN:</strong> ${book.isbn}
-                </p>
+// Ganti bagian card-text dengan:
+<p class="card-text">
+  <strong>ISBN:</strong> ${book.isbn}<br>
+  ${book.sales_link ? `<a href="${book.sales_link}" class="btn btn-primary btn-buy" target="_blank">Beli Buku</a>` : ''}
+</p>
                 <a href="${book.sales_link}" class="btn btn-primary btn-buy" target="_blank">Beli Buku</a>
               </div>
             </div>
